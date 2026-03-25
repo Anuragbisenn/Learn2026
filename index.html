@@ -4,20 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Engineer Interview Prep — 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0a0f;
-    --surface: #111118;
-    --border: #1e1e2e;
-    --accent: #00e5ff;
-    --accent2: #ff6b6b;
-    --accent3: #a8ff78;
-    --accent4: #ffd93d;
-    --accent5: #c77dff;
-    --text: #e2e2f0;
-    --muted: #6b6b8a;
-    --tag-bg: #1a1a2e;
+    --bg: #ffffff;
+    --surface: #f8f9fa;
+    --border: #dee2e6;
+    --accent: #0066cc;
+    --accent2: #dc3545;
+    --accent3: #28a745;
+    --accent4: #ffc107;
+    --accent5: #6f42c1;
+    --text: #212529;
+    --muted: #6c757d;
+    --tag-bg: #e9ecef;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,96 +24,312 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 13px;
-    line-height: 1.5;
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
     min-height: 100vh;
   }
 
-  .header {
-    padding: 48px 40px 32px;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .header::before {
-    content: '';
-    position: absolute;
-    top: -80px; right: -80px;
-    width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(0,229,255,0.08) 0%, transparent 70%);
-    border-radius: 50%;
-  }
-
-  .header-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    color: var(--accent);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-
-  h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: 32px;
-    font-weight: 800;
-    letter-spacing: -1px;
-    color: #fff;
-    margin-bottom: 6px;
-  }
-
-  h1 span { color: var(--accent); }
-
-  .header-sub {
-    color: var(--muted);
-    font-size: 13px;
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .badges {
-    display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px;
-  }
-
-  .badge {
-    padding: 3px 10px;
-    border-radius: 3px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-  }
-
-  .badge-cyan { background: rgba(0,229,255,0.1); color: var(--accent); border: 1px solid rgba(0,229,255,0.2); }
-  .badge-red { background: rgba(255,107,107,0.1); color: var(--accent2); border: 1px solid rgba(255,107,107,0.2); }
-  .badge-green { background: rgba(168,255,120,0.1); color: var(--accent3); border: 1px solid rgba(168,255,120,0.2); }
 
   .filter-bar {
     display: flex; gap: 8px; flex-wrap: wrap;
+    align-items: center;
     padding: 20px 40px;
-    border-bottom: 1px solid var(--border);
-    background: var(--surface);
-    position: sticky; top: 0; z-index: 10;
+    border-bottom: 2px solid var(--border);
+    background: var(--bg);
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .search-box {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .search-input {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 13px;
+    width: 250px;
+    transition: all 0.2s;
+  }
+
+  .search-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.1);
+  }
+
+  .search-input::placeholder {
+    color: var(--muted);
+  }
+
+  .highlight {
+    background-color: #ffd93d;
+    color: #000;
+    font-weight: 600;
+    padding: 2px 4px;
+    border-radius: 2px;
   }
 
   .filter-btn {
-    padding: 5px 14px;
-    border-radius: 2px;
+    padding: 8px 16px;
+    border-radius: 4px;
     border: 1px solid var(--border);
-    background: transparent;
-    color: var(--muted);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.5px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
     cursor: pointer;
-    transition: all 0.15s;
+    transition: all 0.2s;
   }
 
   .filter-btn:hover, .filter-btn.active {
     border-color: var(--accent);
+    color: var(--bg);
+    background: var(--accent);
+  }
+
+  .legend {
+    padding: 20px 40px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .legend-title {
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .legend-color {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .legend-label {
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  .depth-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .depth-basic {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+  }
+
+  .depth-intermediate {
+    background: #fff8e1;
+    color: #f57f17;
+    border: 1px solid #ffecb3;
+  }
+
+  .depth-deep {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+  }
+
+  .learning-summary {
+    padding: 30px 40px;
+    background: var(--surface);
+    border-bottom: 2px solid var(--border);
+  }
+
+  .learning-summary h2 {
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  .learning-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .learning-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .learning-card.hidden {
+    display: none;
+  }
+
+  .learning-card h3 {
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .learning-card ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .learning-card li {
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+
+  .project-section {
+    padding: 30px 40px;
+    background: var(--bg);
+    border-bottom: 2px solid var(--border);
+  }
+
+  .project-section h2 {
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+
+  .project-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .project-name {
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
     color: var(--accent);
-    background: rgba(0,229,255,0.06);
+  }
+
+  .project-period {
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--tag-bg);
+    padding: 3px 10px;
+    border-radius: 3px;
+  }
+
+  .project-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 16px;
+  }
+
+  .project-topics, .project-questions {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px;
+  }
+
+  .project-topics h4, .project-questions h4 {
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .project-topics ul, .project-questions ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .project-topics li, .project-questions li {
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+
+  .project-topics li strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .project-questions li {
+    color: var(--accent2);
+  }
+
+  .topic-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 6px;
+  }
+
+  @media (max-width: 900px) {
+    .project-content {
+      grid-template-columns: 1fr;
+    }
   }
 
   .table-wrap {
@@ -129,66 +344,65 @@
   }
 
   thead th {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
     text-transform: uppercase;
-    color: var(--muted);
-    padding: 10px 16px;
+    color: var(--text);
+    padding: 12px 16px;
     text-align: left;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 2px solid var(--border);
     background: var(--surface);
-    position: sticky; top: 57px; z-index: 5;
   }
 
-  thead th:first-child { width: 120px; }
-  thead th:nth-child(2) { width: 155px; }
-  thead th:nth-child(3) { width: 155px; }
-  thead th:nth-child(4) { width: 145px; }
-  thead th:nth-child(5) { width: auto; }
+  thead th:first-child { width: 160px; }
+  thead th:nth-child(2) { width: 180px; }
+  thead th:nth-child(3) { width: 110px; }
+  thead th:nth-child(4) { width: 160px; }
+  thead th:nth-child(5) { width: 150px; }
+  thead th:nth-child(6) { width: auto; }
 
   tbody tr {
-    border-bottom: 1px solid rgba(30,30,46,0.7);
-    transition: background 0.12s;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
   }
 
-  tbody tr:hover { background: rgba(255,255,255,0.02); }
+  tbody tr:hover { background: var(--surface); }
 
   tbody tr.section-start td:first-child {
     padding-top: 22px;
   }
 
   td {
-    padding: 13px 16px;
+    padding: 14px 16px;
     vertical-align: top;
-    font-size: 12.5px;
+    font-size: 14px;
   }
 
   .section-pill {
     display: inline-block;
-    padding: 3px 10px;
-    border-radius: 2px;
-    font-family: 'Syne', sans-serif;
-    font-size: 10px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.5px;
     white-space: nowrap;
   }
 
-  .s1 { background: rgba(0,229,255,0.1); color: var(--accent); }
-  .s2 { background: rgba(168,255,120,0.1); color: var(--accent3); }
-  .s3 { background: rgba(255,107,107,0.1); color: var(--accent2); }
-  .s4 { background: rgba(255,217,61,0.1); color: var(--accent4); }
-  .s5 { background: rgba(199,125,255,0.1); color: var(--accent5); }
-  .s6 { background: rgba(0,229,255,0.08); color: #80d8ff; }
-  .s7 { background: rgba(255,152,0,0.1); color: #ffb74d; }
+  .s1 { background: #e3f2fd; color: #0066cc; border: 1px solid #bbdefb; }
+  .s2 { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+  .s3 { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+  .s4 { background: #fff8e1; color: #f57f17; border: 1px solid #ffecb3; }
+  .s5 { background: #f3e5f5; color: #6a1b9a; border: 1px solid #e1bee7; }
+  .s6 { background: #e0f7fa; color: #00838f; border: 1px solid #b2ebf2; }
+  .s7 { background: #fff3e0; color: #e65100; border: 1px solid #ffe0b2; }
 
   .topic {
-    font-family: 'Syne', sans-serif;
+    font-family: Calibri, Arial, sans-serif;
     font-weight: 700;
-    font-size: 12.5px;
-    color: #fff;
-    margin-bottom: 2px;
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 4px;
   }
 
   .demand-bar {
@@ -204,102 +418,105 @@
   .demand-med { background: var(--accent4); }
 
   .demand-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 1px;
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 11px;
     color: var(--muted);
   }
 
   .tech-tags { display: flex; flex-wrap: wrap; gap: 4px; }
 
   .tag {
-    padding: 2px 7px;
+    padding: 3px 8px;
     background: var(--tag-bg);
     border: 1px solid var(--border);
-    border-radius: 2px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9.5px;
-    color: #a0a0c0;
+    border-radius: 3px;
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 12px;
+    color: var(--muted);
     white-space: nowrap;
   }
 
   .tag-hot {
-    border-color: rgba(255,107,107,0.35);
+    border-color: #ffcdd2;
     color: var(--accent2);
-    background: rgba(255,107,107,0.07);
+    background: #ffebee;
+    font-weight: 600;
   }
 
   .tag-new {
-    border-color: rgba(0,229,255,0.3);
+    border-color: #bbdefb;
     color: var(--accent);
-    background: rgba(0,229,255,0.06);
+    background: #e3f2fd;
+    font-weight: 600;
   }
 
   .metrics-list { display: flex; flex-wrap: wrap; gap: 4px; }
 
   .metric {
-    padding: 2px 7px;
-    background: rgba(168,255,120,0.06);
-    border: 1px solid rgba(168,255,120,0.15);
-    border-radius: 2px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9.5px;
-    color: #8ee86a;
+    padding: 3px 8px;
+    background: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    border-radius: 3px;
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 12px;
+    color: #2e7d32;
     white-space: nowrap;
   }
 
   .metric-na {
     color: var(--muted);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 13px;
+    font-style: italic;
   }
 
   .concept-text {
-    color: #c8c8e0;
-    font-size: 12px;
-    line-height: 1.6;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.7;
   }
 
   .concept-text strong {
-    color: var(--accent4);
-    font-weight: 500;
+    color: var(--text);
+    font-weight: 700;
   }
 
   .concept-text code {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10.5px;
-    background: rgba(255,255,255,0.06);
-    padding: 1px 5px;
-    border-radius: 2px;
-    color: #b0c4de;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    background: var(--tag-bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: var(--accent2);
+    border: 1px solid var(--border);
   }
 
   .hot-badge {
     display: inline-block;
-    padding: 1px 6px;
-    background: rgba(255,107,107,0.15);
-    border: 1px solid rgba(255,107,107,0.3);
-    border-radius: 2px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 8px;
+    padding: 2px 8px;
+    background: #ffebee;
+    border: 1px solid #ffcdd2;
+    border-radius: 3px;
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
     color: var(--accent2);
-    letter-spacing: 1px;
     vertical-align: middle;
-    margin-left: 4px;
+    margin-left: 6px;
   }
 
   .new-badge {
     display: inline-block;
-    padding: 1px 6px;
-    background: rgba(0,229,255,0.1);
-    border: 1px solid rgba(0,229,255,0.25);
-    border-radius: 2px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 8px;
+    padding: 2px 8px;
+    background: #e3f2fd;
+    border: 1px solid #bbdefb;
+    border-radius: 3px;
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
     color: var(--accent);
-    letter-spacing: 1px;
     vertical-align: middle;
-    margin-left: 4px;
+    margin-left: 6px;
   }
 
   .footer {
@@ -310,8 +527,8 @@
   }
 
   .footer-note {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 12px;
     color: var(--muted);
   }
 
@@ -325,17 +542,6 @@
 </head>
 <body>
 
-<div class="header">
-  <div class="header-label">// Interview Prep Matrix — Live JD Analysis</div>
-  <h1>AI Engineer <span>2026</span></h1>
-  <div class="header-sub">3–4 Years Experience · Interview-Only Topics · Based on Live JDs (March 2026)</div>
-  <div class="badges">
-    <span class="badge badge-red">🔴 HOT = Top JD Demand</span>
-    <span class="badge badge-cyan">🔵 NEW = Emerged in 2025–26 JDs</span>
-    <span class="badge badge-green">Topics filtered: interview-asked only</span>
-  </div>
-</div>
-
 <div class="filter-bar">
   <button class="filter-btn active" onclick="filterRows('all', this)">ALL</button>
   <button class="filter-btn" onclick="filterRows('python-sql', this)">Python & SQL</button>
@@ -346,6 +552,252 @@
   <button class="filter-btn" onclick="filterRows('llmops', this)">LLMOps</button>
   <button class="filter-btn" onclick="filterRows('system', this)">System Design</button>
   <button class="filter-btn" onclick="filterRows('behavioral', this)">Behavioral</button>
+  <button class="filter-btn" onclick="filterRows('projects', this)">Projects</button>
+  <div class="search-box">
+    <input type="text" class="search-input" placeholder="🔍 Search topics..." onkeyup="searchContent(this.value)">
+  </div>
+</div>
+
+<div class="legend">
+  <div class="legend-title">Section Color Legend:</div>
+  <div class="legend-items">
+    <div class="legend-item">
+      <span class="legend-color s1">1</span>
+      <span class="legend-label">Python & SQL</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-color s2">2</span>
+      <span class="legend-label">ML Models</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-color s3">3</span>
+      <span class="legend-label">DL / NLP</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-color s4">4</span>
+      <span class="legend-label">GenAI & RAG</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-color s5">5</span>
+      <span class="legend-label">Agentic AI</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-color s6">6</span>
+      <span class="legend-label">LLMOps</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-color s7">7</span>
+      <span class="legend-label">System Design</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-color s1">8</span>
+      <span class="legend-label">Behavioral</span>
+    </div>
+  </div>
+</div>
+
+<div class="learning-summary">
+  <h2>What to Learn - Quick Reference</h2>
+  <div class="learning-grid">
+    <div class="learning-card" data-section="python-sql">
+      <h3><span class="legend-color s1">1</span> Python & SQL</h3>
+      <ul>
+        <li>Master Pandas groupby, merge, loc/iloc operations</li>
+        <li>SQL window functions (ROW_NUMBER, RANK, LAG/LEAD)</li>
+        <li>Write CTEs for complex multi-step queries</li>
+        <li>Handle missing data and boolean indexing</li>
+      </ul>
+    </div>
+    <div class="learning-card" data-section="ml">
+      <h3><span class="legend-color s2">2</span> ML Models</h3>
+      <ul>
+        <li>Classification metrics: F1, Precision, Recall, AUC-ROC</li>
+        <li>Feature scaling: when to use StandardScaler vs MinMaxScaler</li>
+        <li>Feature engineering: encoding, interactions, datetime features</li>
+        <li>Cross-validation and handling imbalanced data (SMOTE)</li>
+        <li>Hyperparameter tuning with GridSearchCV/Optuna</li>
+        <li>Bias-variance tradeoff and overfitting solutions</li>
+      </ul>
+    </div>
+    <div class="learning-card" data-section="dl">
+      <h3><span class="legend-color s3">3</span> DL / NLP</h3>
+      <ul>
+        <li>Understand forward pass, backpropagation basics</li>
+        <li>Know when to use BERT vs GPT vs T5</li>
+        <li>Transformer architecture: attention mechanism, Q/K/V</li>
+        <li>Transfer learning and fine-tuning strategies</li>
+        <li>Activation functions: ReLU, Sigmoid, Softmax</li>
+      </ul>
+    </div>
+    <div class="learning-card" data-section="genai">
+      <h3><span class="legend-color s4">4</span> GenAI & RAG</h3>
+      <ul>
+        <li>RAG pipeline: chunk → embed → upsert → retrieve → generate</li>
+        <li>Advanced patterns: hybrid search, re-ranking, agentic RAG</li>
+        <li>LoRA/QLoRA for efficient fine-tuning</li>
+        <li>Prompt engineering: system prompts, CoT, few-shot</li>
+        <li>Model selection trade-offs: GPT-4o vs local models</li>
+        <li>RAGAS metrics for evaluation</li>
+      </ul>
+    </div>
+    <div class="learning-card" data-section="agents">
+      <h3><span class="legend-color s5">5</span> Agentic AI</h3>
+      <ul>
+        <li>Agent architecture: LLM + tools + loop</li>
+        <li>ReAct pattern: Thought → Action → Observation</li>
+        <li>Tool definition with Pydantic schemas</li>
+        <li>LangGraph: nodes, edges, state management</li>
+        <li>Multi-agent orchestration patterns</li>
+        <li>MCP (Model Context Protocol) basics</li>
+      </ul>
+    </div>
+    <div class="learning-card" data-section="llmops">
+      <h3><span class="legend-color s6">6</span> LLMOps</h3>
+      <ul>
+        <li>Monitor latency, token cost, and user feedback</li>
+        <li>Track RAGAS faithfulness for drift detection</li>
+        <li>Cost optimization: caching, batching, quantization</li>
+        <li>Rate limit handling with exponential backoff</li>
+        <li>MLflow/Langfuse for experiment tracking</li>
+      </ul>
+    </div>
+    <div class="learning-card" data-section="system">
+      <h3><span class="legend-color s7">7</span> System Design</h3>
+      <ul>
+        <li>Split offline (training) vs online (inference) systems</li>
+        <li>AWS basics: EC2, S3, IAM, Secrets Manager</li>
+        <li>Stateless FastAPI with load balancer for scaling</li>
+        <li>Docker containerization fundamentals</li>
+        <li>MLflow for model versioning and promotion</li>
+        <li>Queue heavy tasks with Redis/Celery</li>
+      </ul>
+    </div>
+    <div class="learning-card" data-section="behavioral">
+      <h3><span class="legend-color s1">8</span> Behavioral</h3>
+      <ul>
+        <li>Prepare STAR stories with specific metrics</li>
+        <li>Defend metrics: state sample size and methodology</li>
+        <li>Trade-off framework: choice → reason → what you gave up</li>
+        <li>Emphasize YOUR contributions, not team's</li>
+        <li>Know company specifics (e.g., BOB: 150M customers)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="project-section">
+  <h2>Project-Based Interview Preparation</h2>
+  
+  <div class="project-card" data-section="projects">
+    <div class="project-header">
+      <span class="project-name">BankIQ — AI-Powered Financial Analysis Platform</span>
+      <span class="project-period">2024 – 2025</span>
+    </div>
+    <div class="project-content">
+      <div class="project-topics">
+        <h4>📚 Topics This Project Covers:</h4>
+        <ul>
+          <li><strong>RAG Pipeline End-to-End</strong> - Chunk, embed, upsert, retrieve, generate</li>
+          <li><strong>Vector Database</strong> - Pinecone for semantic search</li>
+          <li><strong>LangChain</strong> - Orchestration framework</li>
+          <li><strong>OpenAI GPT-4o</strong> - LLM integration</li>
+          <li><strong>Semantic Search</strong> - Cross-bank financial comparison</li>
+          <li><strong>System Design</strong> - FastAPI + Docker deployment</li>
+          <li><strong>Document Processing</strong> - Press releases, investor presentations, quarterly reports</li>
+          <li><strong>Natural Language Querying</strong> - User-friendly financial queries</li>
+        </ul>
+      </div>
+      <div class="project-questions">
+        <h4>❓ Expected Interview Questions:</h4>
+        <ul>
+          <li>Walk me through your RAG pipeline architecture for BankIQ</li>
+          <li>How did you handle chunking for financial documents? What chunk size and overlap?</li>
+          <li>Why Pinecone over other vector databases? What were the trade-offs?</li>
+          <li>How do you prevent hallucinations in financial data responses?</li>
+          <li>Explain your embedding strategy - which model and why?</li>
+          <li>How did you handle cross-bank comparison queries?</li>
+          <li>What RAGAS metrics did you track? What were your scores?</li>
+          <li>How would you scale this to 100+ banks?</li>
+          <li>What was your retrieval strategy? Top-k value? Re-ranking?</li>
+          <li>How did you handle metadata filtering (by bank, document type)?</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-card" data-section="projects">
+    <div class="project-header">
+      <span class="project-name">AI Ticket Sentiment Analyzer</span>
+      <span class="project-period">2025 – 2026</span>
+    </div>
+    <div class="project-content">
+      <div class="project-topics">
+        <h4>📚 Topics This Project Covers:</h4>
+        <ul>
+          <li><strong>Classification Models</strong> - Sentiment analysis (positive/negative/neutral)</li>
+          <li><strong>DeepSeek R1 + Ollama</strong> - Local LLM deployment</li>
+          <li><strong>Model Choice Trade-offs</strong> - Why local vs cloud</li>
+          <li><strong>Classification Metrics</strong> - 95% accuracy, F1 score</li>
+          <li><strong>Real-time Pipeline</strong> - FastAPI streaming</li>
+          <li><strong>Integration</strong> - Zendesk/ServiceNow APIs, Outlook escalation</li>
+          <li><strong>System Design</strong> - Docker containerization</li>
+          <li><strong>Cost Optimization</strong> - Local deployment = zero API costs</li>
+        </ul>
+      </div>
+      <div class="project-questions">
+        <h4>❓ Expected Interview Questions:</h4>
+        <ul>
+          <li>Why 95% accuracy? Why not quote F1, Precision, Recall?</li>
+          <li>Was your data imbalanced? How did you handle it?</li>
+          <li>Why DeepSeek R1 over GPT-4o? Explain the trade-off</li>
+          <li>How did you deploy Ollama? What was the inference latency?</li>
+          <li>What was your test set size? How did you validate 95%?</li>
+          <li>How do you handle edge cases (sarcasm, mixed sentiment)?</li>
+          <li>Explain your real-time detection pipeline architecture</li>
+          <li>How did you integrate with Outlook for escalation?</li>
+          <li>What was the 80% monitoring reduction metric based on?</li>
+          <li>How would you retrain this model when sentiment patterns change?</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-card" data-section="projects">
+    <div class="project-header">
+      <span class="project-name">Intelligent Jira Ticket Assignment System</span>
+      <span class="project-period">2025 – 2026</span>
+    </div>
+    <div class="project-content">
+      <div class="project-topics">
+        <h4>📚 Topics This Project Covers:</h4>
+        <ul>
+          <li><strong>Random Forest</strong> - Multi-class classification for team assignment</li>
+          <li><strong>Feature Engineering</strong> - Ticket title, description, priority, labels</li>
+          <li><strong>MLflow</strong> - Experiment tracking, model versioning</li>
+          <li><strong>Automated Retraining</strong> - Continuous improvement pipeline</li>
+          <li><strong>Jira REST API</strong> - Integration for automated assignment</li>
+          <li><strong>Classification Metrics</strong> - Accuracy, F1 per team</li>
+          <li><strong>System Design</strong> - FastAPI + Docker deployment</li>
+          <li><strong>MLOps</strong> - Model promotion, staging to production</li>
+        </ul>
+      </div>
+      <div class="project-questions">
+        <h4>❓ Expected Interview Questions:</h4>
+        <ul>
+          <li>Why Random Forest over XGBoost or Neural Networks?</li>
+          <li>What features did you engineer from Jira tickets?</li>
+          <li>How did you handle text features (title, description)?</li>
+          <li>What was your train/test split? Cross-validation strategy?</li>
+          <li>How do you measure "improved SLA compliance"? What's the metric?</li>
+          <li>Explain your automated retraining pipeline - what triggers it?</li>
+          <li>How does MLflow fit into your workflow? Show me the flow</li>
+          <li>What hyperparameters did you tune? How?</li>
+          <li>How do you handle new teams that weren't in training data?</li>
+          <li>What if the model assigns to the wrong team? Feedback loop?</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="table-wrap">
@@ -354,6 +806,7 @@
     <tr>
       <th>Section</th>
       <th>Topic / Concept</th>
+      <th>Depth Level</th>
       <th>Model / Tech</th>
       <th>Metrics Covered</th>
       <th>What to Know for Interview</th>
@@ -368,6 +821,7 @@
         <div class="topic">Pandas Live Coding</div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · 80% of rounds</span></div>
       </td>
+      <td><span class="depth-badge depth-deep">DEEP</span></td>
       <td><div class="tech-tags"><span class="tag tag-hot">Pandas</span><span class="tag">NumPy</span></div></td>
       <td><span class="metric-na">— N/A —</span></td>
       <td class="concept-text"><strong>groupby + agg</strong> (top-N per group, multi-col); <strong>merge</strong> — INNER drops unmatched rows, LEFT keeps all left + NaN right; <code>loc</code> (label), <code>iloc</code> (integer); boolean indexing; <code>fillna</code> / <code>dropna</code> strategies. Written live, no autocomplete.</td>
@@ -379,6 +833,7 @@
         <div class="topic">SQL Window Functions</div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · Biggest differentiator</span></div>
       </td>
+      <td><span class="depth-badge depth-deep">DEEP</span></td>
       <td><div class="tech-tags"><span class="tag tag-hot">SQL</span><span class="tag">CTEs</span></div></td>
       <td><span class="metric-na">— N/A —</span></td>
       <td class="concept-text"><strong>ROW_NUMBER / RANK / DENSE_RANK</strong> with <code>PARTITION BY</code> — RANK skips on ties, DENSE_RANK does not. <strong>LAG/LEAD</strong> for period-over-period; <strong>SUM OVER</strong> for running totals. <strong>CTEs</strong>: <code>WITH a AS (...), b AS (...)</code> — readable multi-step logic. <code>CASE WHEN SUM</code> for conditional aggregation. No autocomplete in screening.</td>
@@ -391,6 +846,7 @@
         <div class="topic">Classification Models</div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · Every ML round</span></div>
       </td>
+      <td><span class="depth-badge depth-deep">DEEP</span></td>
       <td><div class="tech-tags"><span class="tag">LogReg</span><span class="tag">Random Forest</span><span class="tag tag-hot">XGBoost</span><span class="tag">LightGBM</span><span class="tag">SVM</span></div></td>
       <td>
         <div class="metrics-list">
@@ -406,6 +862,7 @@
         <div class="topic">Regression Models</div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · L1 vs L2 cold</span></div>
       </td>
+      <td><span class="depth-badge depth-intermediate">INTERMEDIATE</span></td>
       <td><div class="tech-tags"><span class="tag">Linear Reg</span><span class="tag">Ridge (L2)</span><span class="tag tag-hot">Lasso (L1)</span><span class="tag">RF Regressor</span></div></td>
       <td>
         <div class="metrics-list">
@@ -421,6 +878,7 @@
         <div class="topic">Cross-Validation & Bias-Variance</div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · K-fold every ML round</span></div>
       </td>
+      <td><span class="depth-badge depth-deep">DEEP</span></td>
       <td><div class="tech-tags"><span class="tag tag-hot">K-Fold CV</span><span class="tag">Stratified K-Fold</span><span class="tag">SMOTE</span></div></td>
       <td><span class="metric-na">— N/A —</span></td>
       <td class="concept-text"><strong>High variance (overfit)</strong>: train F1 high, val F1 low → regularise, more data, reduce <code>max_depth</code>. <strong>High bias (underfit)</strong>: both errors high → more features, complex model. <strong>Stratified K-Fold</strong> always for imbalanced datasets — preserves class ratio. Imbalance fix order: <code>class_weight='balanced'</code> → SMOTE (train only) → lower threshold for minority class.</td>
@@ -429,9 +887,46 @@
     <tr data-section="ml">
       <td><span class="section-pill s2">2. ML Models</span></td>
       <td>
+        <div class="topic">Feature Scaling & Normalization</div>
+        <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · Asked in every ML round</span></div>
+      </td>
+      <td><span class="depth-badge depth-deep">DEEP</span></td>
+      <td><div class="tech-tags"><span class="tag tag-hot">StandardScaler</span><span class="tag">MinMaxScaler</span><span class="tag">RobustScaler</span><span class="tag">Normalizer</span></div></td>
+      <td><span class="metric-na">— N/A —</span></td>
+      <td class="concept-text"><strong>StandardScaler</strong>: mean=0, std=1 — use for algorithms sensitive to scale (LogReg, SVM, Neural Nets). <strong>MinMaxScaler</strong>: scales to [0,1] — use when bounded range needed. <strong>RobustScaler</strong>: uses median & IQR — robust to outliers. <strong>When NOT to scale</strong>: tree-based models (RF, XGBoost) — they're scale-invariant. <strong>Critical</strong>: fit scaler on train only, then transform train & test — never fit on test (data leakage).</td>
+    </tr>
+
+    <tr data-section="ml">
+      <td><span class="section-pill s2">2. ML Models</span></td>
+      <td>
+        <div class="topic">Feature Engineering</div>
+        <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · Differentiates candidates</span></div>
+      </td>
+      <td><span class="depth-badge depth-deep">DEEP</span></td>
+      <td><div class="tech-tags"><span class="tag tag-hot">One-Hot Encoding</span><span class="tag">Label Encoding</span><span class="tag">Target Encoding</span><span class="tag">Feature Interaction</span></div></td>
+      <td><span class="metric-na">— N/A —</span></td>
+      <td class="concept-text"><strong>One-Hot Encoding</strong>: categorical → binary columns — use for nominal categories (color, city). <strong>Label Encoding</strong>: ordinal categories only (low/med/high). <strong>Target Encoding</strong>: replace category with mean of target — beware overfitting, use with CV. <strong>Feature interactions</strong>: multiply/combine features (age × income). <strong>Datetime features</strong>: extract hour, day_of_week, month, is_weekend. <strong>Handle missing</strong>: mean/median imputation or create <code>is_missing</code> flag.</td>
+    </tr>
+
+    <tr data-section="ml">
+      <td><span class="section-pill s2">2. ML Models</span></td>
+      <td>
+        <div class="topic">Hyperparameter Tuning</div>
+        <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · Production ML essential</span></div>
+      </td>
+      <td><span class="depth-badge depth-intermediate">INTERMEDIATE</span></td>
+      <td><div class="tech-tags"><span class="tag tag-hot">GridSearchCV</span><span class="tag">RandomizedSearchCV</span><span class="tag">Optuna</span><span class="tag">Bayesian Optimization</span></div></td>
+      <td><span class="metric-na">— N/A —</span></td>
+      <td class="concept-text"><strong>GridSearchCV</strong>: exhaustive search over param grid — slow but thorough. <strong>RandomizedSearchCV</strong>: random sampling — faster, good for large spaces. <strong>Key params</strong>: XGBoost (<code>max_depth</code>, <code>learning_rate</code>, <code>n_estimators</code>), RF (<code>max_depth</code>, <code>min_samples_split</code>, <code>n_estimators</code>). <strong>Always use CV</strong> inside tuning to avoid overfitting. <strong>Optuna</strong>: modern Bayesian approach — learns from previous trials, faster convergence.</td>
+    </tr>
+
+    <tr data-section="ml">
+      <td><span class="section-pill s2">2. ML Models</span></td>
+      <td>
         <div class="topic">NLP / GenAI Metrics</div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · RAG + Summarisation</span></div>
       </td>
+      <td><span class="depth-badge depth-intermediate">INTERMEDIATE</span></td>
       <td><div class="tech-tags"><span class="tag tag-hot">RAGAS</span><span class="tag">ROUGE</span><span class="tag">BLEU</span></div></td>
       <td>
         <div class="metrics-list">
@@ -448,6 +943,7 @@
         <div class="topic">ANN & CNN Core</div>
         <div class="demand-bar"><span class="demand-dot demand-med"></span><span class="demand-label">MED · DL foundation</span></div>
       </td>
+      <td><span class="depth-badge depth-basic">BASIC</span></td>
       <td><div class="tech-tags"><span class="tag">ANN</span><span class="tag">CNN</span><span class="tag">ResNet</span><span class="tag">EfficientNet</span></div></td>
       <td>
         <div class="metrics-list">
@@ -463,6 +959,7 @@
         <div class="topic">BERT vs GPT vs T5</div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · 30-sec answer expected</span></div>
       </td>
+      <td><span class="depth-badge depth-intermediate">INTERMEDIATE</span></td>
       <td><div class="tech-tags"><span class="tag tag-hot">BERT</span><span class="tag tag-hot">GPT</span><span class="tag">T5/BART</span><span class="tag">Sentence-BERT</span><span class="tag">DistilBERT</span></div></td>
       <td><span class="metric-na">— N/A —</span></td>
       <td class="concept-text"><strong>BERT (encoder, bidirectional)</strong>: sees full context → classification, NER, sentiment. <strong>GPT (decoder, autoregressive)</strong>: generation, summarisation, chatbots. <strong>T5/BART (enc-dec)</strong>: understands AND generates → translation, summarisation. <strong>Sentence-BERT</strong>: fixed-size vectors → semantic search. Why BERT not GPT for sentiment? Bidirectional context = better understanding.</td>
@@ -474,6 +971,7 @@
         <div class="topic">Transformer Architecture</div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · Asked in senior LLM rounds</span></div>
       </td>
+      <td><span class="depth-badge depth-deep">DEEP</span></td>
       <td><div class="tech-tags"><span class="tag tag-hot">Self-Attention</span><span class="tag">Q/K/V</span><span class="tag">RoPE</span><span class="tag">MoE</span></div></td>
       <td><span class="metric-na">— N/A —</span></td>
       <td class="concept-text"><strong>Attention</strong>: Q·K gives similarity scores, weighted sum of V. <strong>Multi-head</strong>: multiple attention heads capture different relationships. <strong>Context window</strong>: max tokens model can see at once. <strong>RoPE</strong> (Rotary Positional Embeddings): 2026 standard — handles long contexts. <strong>Why Transformer over LSTM</strong>: parallel processing, global context. Explain BPE tokenisation if asked.</td>
@@ -486,6 +984,7 @@
         <div class="topic">RAG Pipeline End-to-End</div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · 95% of GenAI interviews</span></div>
       </td>
+      <td><span class="depth-badge depth-deep">DEEP</span></td>
       <td><div class="tech-tags"><span class="tag tag-hot">Pinecone</span><span class="tag tag-hot">LangChain</span><span class="tag">LlamaIndex</span><span class="tag">Sentence-BERT</span><span class="tag">FastAPI</span></div></td>
       <td>
         <div class="metrics-list">
@@ -501,6 +1000,7 @@
         <div class="topic">Advanced RAG Patterns <span class="new-badge">NEW</span></div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · 2026 JDs now ask this</span></div>
       </td>
+      <td><span class="depth-badge depth-deep">DEEP</span></td>
       <td><div class="tech-tags"><span class="tag tag-new">Agentic RAG</span><span class="tag tag-new">Corrective RAG</span><span class="tag tag-new">Hybrid Search</span><span class="tag">BM25</span><span class="tag">Re-ranking</span></div></td>
       <td><span class="metric-na">— N/A —</span></td>
       <td class="concept-text"><strong>Hybrid Search</strong>: BM25 (keyword) + vector (semantic) combined — better than either alone. <strong>Re-ranking</strong>: filter top-k results for relevance before sending to LLM. <strong>Agentic RAG</strong>: agent decides which source to query, iterates multiple retrievals, judges relevance — vs traditional RAG's passive single lookup. <strong>Corrective RAG (CRAG)</strong>: system reviews retrieved docs for relevancy before generating.</td>
@@ -512,6 +1012,7 @@
         <div class="topic">Model Choice Logic & Trade-offs</div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · Justify every choice</span></div>
       </td>
+      <td><span class="depth-badge depth-intermediate">INTERMEDIATE</span></td>
       <td><div class="tech-tags"><span class="tag tag-hot">GPT-4o</span><span class="tag">DeepSeek R1</span><span class="tag">Ollama</span><span class="tag">Llama 3</span><span class="tag">GGUF/4-bit</span></div></td>
       <td><span class="metric-na">— N/A —</span></td>
       <td class="concept-text">State choice → reason (quality/cost/privacy/latency) → what you gave up. <strong>GPT-4o</strong>: best quality, 128K context, data leaves org. <strong>DeepSeek R1 + Ollama</strong>: free, fully local, 4-bit GGUF — privacy + zero cost. <strong>BERT family</strong>: labelled data + classification/NER/sentiment. <strong>Zero-shot LLM</strong>: no labelled data, fast deploy. Template: <em>"I chose X because Y, trade-off was Z."</em></td>
@@ -523,6 +1024,7 @@
         <div class="topic">Fine-Tuning: LoRA & QLoRA</div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · PEFT in every senior JD</span></div>
       </td>
+      <td><span class="depth-badge depth-deep">DEEP</span></td>
       <td><div class="tech-tags"><span class="tag tag-hot">LoRA</span><span class="tag tag-hot">QLoRA</span><span class="tag">Adapter</span><span class="tag">Unsloth</span><span class="tag">HuggingFace TRL</span></div></td>
       <td><span class="metric-na">— N/A —</span></td>
       <td class="concept-text"><strong>LoRA</strong>: freeze 7B base model, add low-rank A×B matrices (rank=8) → only ~4M params trained vs 7B full. <strong>QLoRA</strong>: adds 4-bit NF4 quantisation → 7B model fits in 4GB VRAM. <strong>Rule</strong>: fine-tune for style/format consistency; use RAG for knowledge — never fine-tune to add new facts. When asked "how would you fine-tune without LangChain?" — explain the primitives.</td>
@@ -534,6 +1036,7 @@
         <div class="topic">Prompt Engineering</div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · Table stakes in 2026</span></div>
       </td>
+      <td><span class="depth-badge depth-intermediate">INTERMEDIATE</span></td>
       <td><div class="tech-tags"><span class="tag tag-new">System Prompt</span><span class="tag">CoT</span><span class="tag">Few-shot</span><span class="tag">DSPy</span><span class="tag">PromptFoo</span></div></td>
       <td><span class="metric-na">— N/A —</span></td>
       <td class="concept-text"><strong>System prompt</strong>: sets model behavior/persona, hidden from user. <strong>User prompt</strong>: the actual input. <strong>Chain-of-Thought (CoT)</strong>: "think step by step" improves reasoning. <strong>Few-shot</strong>: examples in prompt guide output format. <strong>Prompt injection</strong>: untrusted input overrides system prompt — defend with input validation + output checking. Know temperature (randomness) and <code>top_p</code> (nucleus sampling) parameters.</td>
@@ -546,6 +1049,7 @@
         <div class="topic">Agent Architecture & ReAct <span class="new-badge">NEW</span></div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · #1 new req in 2026 JDs</span></div>
       </td>
+      <td><span class="depth-badge depth-deep">DEEP</span></td>
       <td><div class="tech-tags"><span class="tag tag-hot">LangGraph</span><span class="tag tag-new">MCP</span><span class="tag">LangChain Agents</span><span class="tag">OpenAI Functions</span></div></td>
       <td><span class="metric-na">— N/A —</span></td>
       <td class="concept-text"><strong>Agent = LLM + tools + loop</strong>: model decides which tool to call, observes result, decides next step. <strong>ReAct</strong>: Thought → Action (tool call) → Observation → Thought → Final Answer. <strong>Tool definition</strong>: name + description (LLM reads this) + Pydantic input schema. <strong>MCP</strong> (Model Context Protocol): de-facto standard for connecting agents to tools/data (97M monthly downloads by Feb 2026). LangGraph nodes = Python functions, edges = routing, state = TypedDict.</td>
@@ -557,6 +1061,7 @@
         <div class="topic">Multi-Agent Systems <span class="new-badge">NEW</span></div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · Manager-level rounds</span></div>
       </td>
+      <td><span class="depth-badge depth-deep">DEEP</span></td>
       <td><div class="tech-tags"><span class="tag tag-new">LangGraph</span><span class="tag">CrewAI</span><span class="tag">AutoGen</span><span class="tag">OpenAI Agent SDK</span></div></td>
       <td><span class="metric-na">— N/A —</span></td>
       <td class="concept-text"><strong>Multi-agent</strong>: specialised agents (research, writing, code) orchestrated by a coordinator. <strong>Agentic RAG vs Traditional RAG</strong>: Agentic = active, multi-step, iterative retrieval; Traditional = passive, single lookup. <strong>Guardrails</strong>: input validation, output checking, fallback on tool failure — production agents need these. When asked: <em>"My LangGraph chatbots ARE agentic — retriever tool, date tool, calculator tool."</em></td>
@@ -569,6 +1074,7 @@
         <div class="topic">Model Monitoring in Production <span class="new-badge">NEW</span></div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · New baseline in 2026 JDs</span></div>
       </td>
+      <td><span class="depth-badge depth-intermediate">INTERMEDIATE</span></td>
       <td><div class="tech-tags"><span class="tag tag-hot">MLflow</span><span class="tag tag-new">Langfuse</span><span class="tag tag-new">LangSmith</span><span class="tag">EvidentlyAI</span><span class="tag">Redis</span></div></td>
       <td>
         <div class="metrics-list">
@@ -584,6 +1090,7 @@
         <div class="topic">Cost Optimisation & Rate Limits</div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · Production JDs ask this</span></div>
       </td>
+      <td><span class="depth-badge depth-intermediate">INTERMEDIATE</span></td>
       <td><div class="tech-tags"><span class="tag">Redis</span><span class="tag">Celery</span><span class="tag tag-new">Quantization</span><span class="tag">Batching</span></div></td>
       <td>
         <div class="metrics-list">
@@ -600,6 +1107,7 @@
         <div class="topic">AI System Design (Whiteboard)</div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · Manager-level BOB / FAANG</span></div>
       </td>
+      <td><span class="depth-badge depth-deep">DEEP</span></td>
       <td><div class="tech-tags"><span class="tag tag-hot">FastAPI</span><span class="tag">Pinecone</span><span class="tag">S3</span><span class="tag">EC2</span><span class="tag">Docker</span><span class="tag">Load Balancer</span></div></td>
       <td><span class="metric-na">— N/A —</span></td>
       <td class="concept-text"><strong>Always split</strong>: offline (ingestion/training — async, can be slow) vs online (inference — sync, must be fast). <strong>BankIQ pattern</strong>: S3 → FastAPI ingest → chunk/embed → Pinecone; query → LangGraph → GPT-4o → stream. <strong>Scalability answer</strong>: "Stateless FastAPI containers behind load balancer; Pinecone scales automatically; Ollama needs GPU cluster for concurrency." <strong>Queue heavy tasks</strong> with Redis/Celery; health check endpoint per service.</td>
@@ -611,6 +1119,7 @@
         <div class="topic">Cloud Basics — AWS</div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · 80% of JDs mention AWS</span></div>
       </td>
+      <td><span class="depth-badge depth-basic">BASIC</span></td>
       <td><div class="tech-tags"><span class="tag tag-hot">EC2</span><span class="tag tag-hot">S3</span><span class="tag">IAM</span><span class="tag">Secrets Manager</span><span class="tag">boto3</span><span class="tag">Docker</span></div></td>
       <td><span class="metric-na">— N/A —</span></td>
       <td class="concept-text"><strong>EC2</strong>: VM on AWS — <code>t3.medium</code> for API, <code>g4dn.xlarge</code> for GPU inference. <strong>S3</strong>: object store for model artifacts, training data, MLflow logs — access via boto3. <strong>IAM role</strong>: give EC2 permission to read S3 without hardcoding keys. <strong>Secrets Manager</strong>: store API keys (OpenAI, Pinecone) — reference in FastAPI via <code>os.environ</code>. Kubernetes question: "I use Docker on EC2; K8s is next step for auto-scaling."</td>
@@ -622,6 +1131,7 @@
         <div class="topic">MLflow & Experiment Tracking</div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · Every production JD</span></div>
       </td>
+      <td><span class="depth-badge depth-intermediate">INTERMEDIATE</span></td>
       <td><div class="tech-tags"><span class="tag tag-hot">MLflow</span><span class="tag">Weights & Biases</span><span class="tag">DVC</span><span class="tag">CI/CD</span></div></td>
       <td>
         <div class="metrics-list">
@@ -638,6 +1148,7 @@
         <div class="topic">Metric Defence</div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · Every number challenged</span></div>
       </td>
+      <td><span class="depth-badge depth-intermediate">INTERMEDIATE</span></td>
       <td><div class="tech-tags"><span class="tag">Held-out Test Set</span><span class="tag">Manual Timing</span></div></td>
       <td>
         <div class="metrics-list">
@@ -653,6 +1164,7 @@
         <div class="topic">STAR Stories & Why BOB</div>
         <div class="demand-bar"><span class="demand-dot demand-high"></span><span class="demand-label">HOT · Round 1 always</span></div>
       </td>
+      <td><span class="depth-badge depth-basic">BASIC</span></td>
       <td><div class="tech-tags"><span class="tag">BankIQ</span><span class="tag">Ticket Analyzer</span><span class="tag">Jira Assignment</span></div></td>
       <td><span class="metric-na">— N/A —</span></td>
       <td class="concept-text"><strong>TMAY (2 min)</strong>: "AI Engineer, 3.5 years at ClearTrail, production NLP + GenAI → want to bring this to banking at scale." <strong>BOB specifics</strong>: 150M+ customers, bob World app (name it), RBI compliance constraints. <strong>BankIQ STAR</strong>: analysts 2+ hrs → RAG (LangChain + GPT-4o + Pinecone) → 30-sec cross-bank comparison. Always say what YOU designed, not the team. One strong specific beats three vague ones.</td>
@@ -664,6 +1176,7 @@
         <div class="topic">Trade-off Answer Framework</div>
         <div class="demand-bar"><span class="demand-dot demand-med"></span><span class="demand-label">MED · System design + model rounds</span></div>
       </td>
+      <td><span class="depth-badge depth-basic">BASIC</span></td>
       <td><div class="tech-tags"><span class="tag">Any</span></div></td>
       <td><span class="metric-na">— N/A —</span></td>
       <td class="concept-text"><strong>Template</strong>: State the choice → reason (quality / cost / privacy / latency) → what you gave up. Example: <em>"I chose DeepSeek R1 via Ollama over GPT-4o because the client required all data to stay on-premise (privacy), accepting a slight quality trade-off."</em> Interviewers want reasoning, not just answers. Use this for model choice, infra choice, and metric choice questions.</td>
@@ -673,15 +1186,34 @@
 </table>
 </div>
 
-<div class="footer">
-  <div class="footer-note">// Generated from live JD analysis — March 2026 · 3–4 yr AI Engineer roles · India + Global</div>
-  <div class="footer-note">Sources: Indeed, DataCamp, LetsdataScience, GitHub interview repos · Interview-asked topics only</div>
-</div>
 
 <script>
   function filterRows(section, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
+    
+    // Clear search
+    document.querySelector('.search-input').value = '';
+    
+    // Show/hide sections based on filter
+    const learningSummary = document.querySelector('.learning-summary');
+    const projectSection = document.querySelector('.project-section');
+    const tableWrap = document.querySelector('.table-wrap');
+    
+    if (section === 'projects') {
+      // Show only projects section
+      learningSummary.style.display = 'none';
+      projectSection.style.display = 'block';
+      tableWrap.style.display = 'none';
+      return;
+    } else {
+      // Show learning summary and table, hide projects
+      learningSummary.style.display = 'block';
+      projectSection.style.display = 'none';
+      tableWrap.style.display = 'block';
+    }
+    
+    // Filter table rows
     const rows = document.querySelectorAll('tbody tr');
     rows.forEach(row => {
       if (section === 'all') {
@@ -693,6 +1225,138 @@
         } else {
           row.classList.add('hidden');
         }
+      }
+    });
+    
+    // Filter learning cards
+    const cards = document.querySelectorAll('.learning-card');
+    cards.forEach(card => {
+      if (section === 'all') {
+        card.classList.remove('hidden');
+      } else {
+        const cardSection = card.getAttribute('data-section');
+        if (cardSection === section) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      }
+    });
+  }
+  
+  function removeHighlights() {
+    document.querySelectorAll('.highlight').forEach(el => {
+      const parent = el.parentNode;
+      parent.replaceChild(document.createTextNode(el.textContent), el);
+      parent.normalize();
+    });
+  }
+
+  function highlightText(element, query) {
+    const walker = document.createTreeWalker(
+      element,
+      NodeFilter.SHOW_TEXT,
+      null,
+      false
+    );
+    
+    const nodesToReplace = [];
+    let node;
+    
+    while (node = walker.nextNode()) {
+      if (node.nodeValue.toLowerCase().includes(query)) {
+        nodesToReplace.push(node);
+      }
+    }
+    
+    nodesToReplace.forEach(node => {
+      const text = node.nodeValue;
+      const lowerText = text.toLowerCase();
+      const index = lowerText.indexOf(query);
+      
+      if (index !== -1) {
+        const before = text.substring(0, index);
+        const match = text.substring(index, index + query.length);
+        const after = text.substring(index + query.length);
+        
+        const fragment = document.createDocumentFragment();
+        if (before) fragment.appendChild(document.createTextNode(before));
+        
+        const highlight = document.createElement('span');
+        highlight.className = 'highlight';
+        highlight.textContent = match;
+        fragment.appendChild(highlight);
+        
+        if (after) fragment.appendChild(document.createTextNode(after));
+        
+        node.parentNode.replaceChild(fragment, node);
+      }
+    });
+  }
+
+  function searchContent(query) {
+    query = query.toLowerCase().trim();
+    
+    // Remove previous highlights
+    removeHighlights();
+    
+    if (query === '') {
+      // Reset to show all
+      document.querySelectorAll('tbody tr, .learning-card, .project-card').forEach(el => {
+        el.classList.remove('hidden');
+      });
+      document.querySelector('.learning-summary').style.display = 'block';
+      document.querySelector('.project-section').style.display = 'none';
+      document.querySelector('.table-wrap').style.display = 'block';
+      return;
+    }
+    
+    // Show all sections when searching
+    document.querySelector('.learning-summary').style.display = 'block';
+    document.querySelector('.project-section').style.display = 'block';
+    document.querySelector('.table-wrap').style.display = 'block';
+    
+    // Deactivate all filter buttons
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    
+    let foundAny = false;
+    
+    // Search in table rows
+    const rows = document.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+      const text = row.textContent.toLowerCase();
+      if (text.includes(query)) {
+        row.classList.remove('hidden');
+        highlightText(row, query);
+        foundAny = true;
+      } else {
+        row.classList.add('hidden');
+      }
+    });
+    
+    // Search in learning cards
+    const cards = document.querySelectorAll('.learning-card');
+    cards.forEach(card => {
+      const text = card.textContent.toLowerCase();
+      if (text.includes(query)) {
+        card.classList.remove('hidden');
+        highlightText(card, query);
+        foundAny = true;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+    
+    // Search in project cards
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach(card => {
+      const text = card.textContent.toLowerCase();
+      if (text.includes(query)) {
+        card.classList.remove('hidden');
+        highlightText(card, query);
+        foundAny = true;
+      } else {
+        card.classList.add('hidden');
       }
     });
   }
